@@ -10,6 +10,7 @@ RUN apt-get update && \
     file \
     binutils \
     auditd \
+    lldb \
     && apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
