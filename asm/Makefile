@@ -2,12 +2,12 @@ COLLEEN = Colleen
 GRACE   = Grace
 SULLY   = Sully
 
-NAMES = $(COLLEEN) # $(GRACE) $(SULLY)
+NAMES = $(COLLEEN) $(GRACE) #$(SULLY)
 SRCS = Colleen.s # Grace.s Sully.s
 OBJS = $(SRCS:.s=.o)
 # CC = clang # clang was used in the subject sample
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -g -fsanitize=address
 
 NASM = nasm
 NASMFLAGS = -f elf64
@@ -45,6 +45,13 @@ test-colleen: $(COLLEEN)
 
 test-c: test-colleen
 
+$(GRACE): Grace.s
+	$(NASM) $(NASMFLAGS) Grace.s -o Grace.o
+	$(CC) $(CFLAGS) Grace.o -o Grace
+
+g: $(GRACE)
+
+
 .PHONY: test-grace test-g
 test-grace: $(GRACE)
 	./Grace ; diff Grace_kid.s Grace.s
@@ -59,3 +66,6 @@ test-sully: $(SULLY)
 	done
 
 test-s: test-sully
+
+debug: CFLAGS += -g -fsanitize=address
+debug: re
