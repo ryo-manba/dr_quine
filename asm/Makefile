@@ -2,8 +2,8 @@ COLLEEN = Colleen
 GRACE   = Grace
 SULLY   = Sully
 
-NAMES = $(COLLEEN) $(GRACE) #$(SULLY)
-SRCS = Colleen.s # Grace.s Sully.s
+NAMES = $(COLLEEN) $(GRACE) $(SULLY)
+SRCS = Colleen.s Grace.s Sully.s
 OBJS = $(SRCS:.s=.o)
 # CC = clang # clang was used in the subject sample
 CC = gcc
@@ -57,6 +57,12 @@ test-grace: $(GRACE)
 	./Grace ; diff Grace_kid.s Grace.s
 
 test-g: test-grace
+
+$(SULLY): Sully.s
+	$(NASM) $(NASMFLAGS) Sully.s -o Sully.o
+	$(CC) $(CFLAGS) Sully.o -o Sully
+
+s: $(SULLY)
 
 .PHONY: test-sully test-s
 test-sully: $(SULLY)
