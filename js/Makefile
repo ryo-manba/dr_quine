@@ -12,6 +12,9 @@ all: $(NAMES)
 clean:
 	rm -rf tmp_Colleen Grace_kid.js Sully_*
 
+.PHONY: fclean
+fclean: clean
+
 $(COLLEEN):
 	node Colleen.js
 
