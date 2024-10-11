@@ -10,7 +10,7 @@ all: $(NAMES)
 
 .PHONY: clean
 clean:
-	rm -rf tmp_Colleen Grace_kid.c Sully_*
+	rm -rf tmp_Colleen Grace_kid.js Sully_*
 
 $(COLLEEN):
 	node Colleen.js
