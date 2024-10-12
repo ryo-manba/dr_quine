@@ -11,6 +11,7 @@ RUN apt-get update && \
     binutils \
     auditd \
     lldb \
+    clang \
     && apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 

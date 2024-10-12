@@ -5,8 +5,8 @@ SULLY   = Sully
 NAMES = $(COLLEEN) $(GRACE) $(SULLY)
 SRCS = Colleen.s Grace.s Sully.s
 OBJS = $(SRCS:.s=.o)
-# CC = clang # clang was used in the subject sample
-CC = gcc
+CC = clang # clang was used in the subject sample
+# CC = gcc
 CFLAGS = -Wall -Wextra -Werror -g -fsanitize=address
 
 NASM = nasm
@@ -67,7 +67,7 @@ s: $(SULLY)
 .PHONY: test-sully test-s
 test-sully: $(SULLY)
 	./Sully
-	for n in {5..0}; do \
+	for n in $(shell seq 5 -1 0); do \
 		diff Sully.s Sully_$$n.s || echo "Difference found in Sully_$$n.s"; \
 	done
 

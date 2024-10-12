@@ -4,23 +4,18 @@ SULLY   = Sully
 
 NAMES = $(COLLEEN) $(GRACE) $(SULLY)
 SRCS = Colleen.c Grace.c Sully.c
-OBJS = $(SRCS:.c=.o)
 CC = clang # clang was used in the subject sample
 CFLAGS = -Wall -Wextra -Werror
 
 .PHONY: all
 all: $(NAMES)
 
-%.o: %.c
-	$(CC) $(CFLAGS) -c $< -o $@
-
 .PHONY: clean
 clean:
-	rm -rf $(OBJS)
+	rm -rf $(NAMES)
 
 .PHONY: fclean
 fclean: clean
-	rm -rf $(NAMES)
 	rm -rf tmp_Colleen Grace_kid.c Sully_*
 
 .PHONY: re
@@ -44,9 +39,8 @@ test-g: test-grace
 .PHONY: test-sully test-s
 test-sully: $(SULLY)
 	./Sully
-	for n in {5..0}; do \
-		diff Sully.c Sully_$$n.c || echo "Difference found in Sully_$$n.c"; \
+	for n in $(shell seq 5 -1 0); do \
+		diff Sully.s Sully_$$n.s || echo "Difference found in Sully_$$n.s"; \
 	done
-
 
 test-s: test-sully
