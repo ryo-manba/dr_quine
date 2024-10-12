@@ -40,7 +40,7 @@ test-g: test-grace
 test-sully: $(SULLY)
 	./Sully
 	for n in $(shell seq 5 -1 0); do \
-		diff Sully.s Sully_$$n.s || echo "Difference found in Sully_$$n.s"; \
+		diff Sully.c Sully_$$n.c || echo "Difference found in Sully_$$n.c"; \
 	done
 
 test-s: test-sully

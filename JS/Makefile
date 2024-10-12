@@ -40,9 +40,9 @@ test-grace:
 test-g: test-grace
 
 .PHONY: test-sully test-s
-test-sully: $(SULLY)
+test-sully:
 	node Sully.js
-	for n in {5..0}; do \
+	for n in $(shell seq 5 -1 0); do \
 		diff Sully.js Sully_$$n.js || echo "Difference found in Sully_$$n.js"; \
 	done
 
