@@ -7,7 +7,7 @@ SRCS = Colleen.s Grace.s Sully.s
 OBJS = $(SRCS:.s=.o)
 CC = clang # clang was used in the subject sample
 # CC = gcc
-CFLAGS = -Wall -Wextra -Werror -g -fsanitize=address
+CFLAGS = -Wall -Wextra -Werror # -g -fsanitize=address
 
 NASM = nasm
 NASMFLAGS = -f elf64
